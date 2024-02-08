@@ -6,7 +6,7 @@ public class InsanKaynaklariDepartmani implements Departman {
 
     // TODO Bu class'da sadece zam oranini belirtmelisiniz
     //      Başka bişeyi değiştirmeye gerek yok.
-    final int zamOrani = 0;
+    final int zamOrani = 20;
 
     @Override
     public int getZamOrani() {
