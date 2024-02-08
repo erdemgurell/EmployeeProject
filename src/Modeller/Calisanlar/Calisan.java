@@ -46,6 +46,7 @@ public class Calisan {
                break;
 
             }
+            continue;
         }
 
 
