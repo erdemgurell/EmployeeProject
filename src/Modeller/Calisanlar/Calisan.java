@@ -40,15 +40,13 @@ public class Calisan {
         //  Aynıysa, "terminalden girilen çalışanı bu departmana set et" demektir...
         //  İpucu: Departman listesinin (Veritabani.Departmanlar.DepartmanList) içerisindeki departmanların kodları var,
         //  bu kodlari donguye tutmak ise yarayabilir.
-        if (Departmanlar.getDepartmanList().contains(departmanKodu)) {
-            for (Departman d : Departmanlar.getDepartmanList()) {
-                if (d.getDepartmanKodu().equals(departmanKodu)) {
-                    setDepartman(departmanKodu);
-                }
+
+        for (Departman d : Departmanlar.getDepartmanList()) {
+            if (d.getDepartmanKodu().equals(departmanKodu)) {
+                setDepartman(departmanKodu);
             }
-        } else {
-            System.out.println("Geçerli bir kod girin.");
         }
+
 
     }
 
