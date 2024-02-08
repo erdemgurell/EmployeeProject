@@ -41,8 +41,8 @@ public class Calisan {
         //  İpucu: Departman listesinin (Veritabani.Departmanlar.DepartmanList) içerisindeki departmanların kodları var,
         //  bu kodlari donguye tutmak ise yarayabilir.
         for (Departman d : Departmanlar.getDepartmanList()) {
-            if (d.getDepartmanKodu().equals(departmanKodu)) {
-                setDepartman(departmanKodu);
+            if (Departman.getDepartmanKodu().equals(departmanKodu)) {
+                this.Departman = d;
                 break;
             }
         }
@@ -54,7 +54,7 @@ public class Calisan {
         // TODO setCalisanId() methodunu doldurunuz
         // Calisanin ID sinin kendisine özel olduğundan bahsetmistik,
         // ID nin nasil kaydedileceği Readme Dosyasi içerisinde yer aliyor.
-        this.calisanId = getDepartman() + String.valueOf(this.id) + getCalisanIsimKodu();
+        this.calisanId = Departman.getDepartmanKodu() + this.id + getCalisanIsimKodu();
 
     }
 
@@ -67,7 +67,7 @@ public class Calisan {
         String[] nameKodList = this.adSoyad.split(" ");
 
         for (String s : nameKodList) {
-            this.isimKodu = this.adSoyad.substring(0, 1).toUpperCase();
+            this.isimKodu = s.substring(0, 1).toUpperCase();
         }
         return this.isimKodu;// TODO burayi unutmayin
     }
@@ -89,9 +89,9 @@ public class Calisan {
     public String getDepartmanAdi() {
         // TODO getDepartmanAdi() methodunu doldurunuz
         // İpucu: Departman Kodu YD ise departman adi Yonetim Departmani olarak kaydedilmelidir.
-        if (getDepartman().equals("YD")) {
+        if (Departman.getDepartmanKodu().equals("YD")) {
             return "Yönetim Departmanı";
-        } else if (getDepartman().equals("BTD")) {
+        } else if (Departman.getDepartmanKodu().equals("BTD")) {
             return "Bilişim Teknolojileri Departmanı";
         } else {
             return "İnsan Kaynakları Departmanı";
@@ -120,7 +120,7 @@ public class Calisan {
                 "calisanId='" + calisanId + '\'' +
                 ", adSoyad='" + adSoyad + '\'' +
                 ", maas=" + maas +
-                ", Departman=" + Departman +
+                ", Departman=" + getDepartmanAdi() +
                 '}';
     }
 }

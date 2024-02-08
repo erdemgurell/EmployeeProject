@@ -42,7 +42,7 @@ public class Calisanlar {
         // TODO  Departman kodu verilerek, konsola sadece o departmanda calisanlari yazdirmak için
         //       printDepartmandakiCalisanlar() methodunu doldurunuz
         for (Calisan c : calisanList){
-           if (departmanKodu.equals(c.getDepartman())){
+           if (departmanKodu.equals(c.getDepartman().getDepartmanKodu())){
                System.out.println(c);
            }
         }
