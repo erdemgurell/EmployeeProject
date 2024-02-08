@@ -26,11 +26,6 @@ public class Calisan {
 
     }
 
-    // Terminalden girilen calisanin departman koduna göre, gerekli departman set edilmelidir.
-    // Çalışan sınıfının Constructor 'ı main'de tanımlı. Program çalıştığında, terminalden gireceğimiz
-    // departman kodu, buradaki metod (setDepartman) vasıtasıyla departman listesinin tümünü dolaşıp (foreach)
-    // getDepartmanKodu() ile bulunan sonuçlardan biriyle aynı mı? Diye bakıyoruz...
-    // Aynıysa, "terminalden girilen çalışanı bu departmana set et" demektir...
     private void setDepartman(String departmanKodu) {
         // TODO setDepartman() methodunu doldurunuz
         //  Terminalden girilen calisanin departman koduna göre, gerekli departman set edilmelidir.
@@ -41,7 +36,7 @@ public class Calisan {
         //  İpucu: Departman listesinin (Veritabani.Departmanlar.DepartmanList) içerisindeki departmanların kodları var,
         //  bu kodlari donguye tutmak ise yarayabilir.
         for (Departman d : Departmanlar.getDepartmanList()) {
-            if (Departman.getDepartmanKodu().equals(departmanKodu)) {
+            if (d.getDepartmanKodu().equals(departmanKodu)) {
                 this.Departman = d;
                 break;
             }
@@ -96,7 +91,8 @@ public class Calisan {
         } else {
             return "İnsan Kaynakları Departmanı";
         }
-        // TODO burayi unutmayin
+       // TODO burayi unutmayin
+
     }
 
     // Calisana zam yapilmasi için gerekli bir method
