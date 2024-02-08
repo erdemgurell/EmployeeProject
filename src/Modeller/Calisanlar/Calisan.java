@@ -26,12 +26,11 @@ public class Calisan {
 
     }
 
-    // Terminalden girilen calisanin departman koduna göre, gerekli departman set edilmelidir.
-    // Çalışan sınıfının Constructor 'ı main'de tanımlı. Program çalıştığında, terminalden gireceğimiz
-    // departman kodu, buradaki metod (setDepartman) vasıtasıyla departman listesinin tümünü dolaşıp (foreach)
-    // getDepartmanKodu() ile bulunan sonuçlardan biriyle aynı mı? Diye bakıyoruz...
-    // Aynıysa, "terminalden girilen çalışanı bu departmana set et" demektir...
+
+
+
     private void setDepartman(String departmanKodu) {
+
         // TODO setDepartman() methodunu doldurunuz
         //  Terminalden girilen calisanin departman koduna göre, gerekli departman set edilmelidir.
         //  Çalışan sınıfının Constructor 'ı main'de tanımlı. Program çalıştığında, terminalden gireceğimiz
@@ -40,12 +39,15 @@ public class Calisan {
         //  Aynıysa, "terminalden girilen çalışanı bu departmana set et" demektir...
         //  İpucu: Departman listesinin (Veritabani.Departmanlar.DepartmanList) içerisindeki departmanların kodları var,
         //  bu kodlari donguye tutmak ise yarayabilir.
+
         for (Departman d : Departmanlar.getDepartmanList()) {
             if (d.getDepartmanKodu().equals(departmanKodu)) {
-                setDepartman(departmanKodu);
-                break;
+               this.Departman=d;
+               break;
+
             }
         }
+
 
     }
 
@@ -54,7 +56,13 @@ public class Calisan {
         // TODO setCalisanId() methodunu doldurunuz
         // Calisanin ID sinin kendisine özel olduğundan bahsetmistik,
         // ID nin nasil kaydedileceği Readme Dosyasi içerisinde yer aliyor.
-        this.calisanId = getDepartman() + String.valueOf(this.id) + getCalisanIsimKodu();
+
+
+        this.calisanId = Departman.getDepartmanKodu() + this.id + getCalisanIsimKodu();
+
+
+
+
 
     }
 
@@ -89,14 +97,16 @@ public class Calisan {
     public String getDepartmanAdi() {
         // TODO getDepartmanAdi() methodunu doldurunuz
         // İpucu: Departman Kodu YD ise departman adi Yonetim Departmani olarak kaydedilmelidir.
-        if (getDepartman().equals("YD")) {
-            return "Yönetim Departmanı";
-        } else if (getDepartman().equals("BTD")) {
-            return "Bilişim Teknolojileri Departmanı";
-        } else {
-            return "İnsan Kaynakları Departmanı";
-        }
+      if (getDepartman().equals("YD")) {
+          return "Yönetim Departmanı";
+      } else if (getDepartman().equals("BTD")) {
+          return "Bilişim Teknolojileri Departmanı";
+      } else {
+          return "İnsan Kaynakları Departmanı";
+      }
         // TODO burayi unutmayin
+
+
     }
 
     // Calisana zam yapilmasi için gerekli bir method
@@ -106,6 +116,7 @@ public class Calisan {
         for (Calisan c : Calisanlar.getCalisanList()){
             if (calisanId.equals(c.calisanId)){
                 c.maas += (c.maas / 100) * c.Departman.getZamOrani();
+                break;
             }
         }
     }
@@ -120,7 +131,7 @@ public class Calisan {
                 "calisanId='" + calisanId + '\'' +
                 ", adSoyad='" + adSoyad + '\'' +
                 ", maas=" + maas +
-                ", Departman=" + Departman +
+                ", Departman=" + getDepartmanAdi()+
                 '}';
     }
 }
