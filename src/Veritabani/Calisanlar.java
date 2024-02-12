@@ -33,7 +33,6 @@ public class Calisanlar {
         for (Calisan c : calisanList){
             if (c.getCalisanId().equals(calisanId)){
                 calisanList.remove(c);
-                break;
             }
         }
     }
@@ -43,7 +42,7 @@ public class Calisanlar {
         // TODO  Departman kodu verilerek, konsola sadece o departmanda calisanlari yazdirmak için
         //       printDepartmandakiCalisanlar() methodunu doldurunuz
         for (Calisan c : calisanList){
-           if (departmanKodu.equals(c.getDepartman().getDepartmanKodu())){
+           if (departmanKodu.equals(c.getDepartman())){
                System.out.println(c);
            }
         }

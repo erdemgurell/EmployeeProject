@@ -62,7 +62,7 @@ public class Calisan {
         String[] nameKodList = this.adSoyad.split(" ");
 
         for (String s : nameKodList) {
-            this.isimKodu = s.substring(0, 1).toUpperCase();
+            this.isimKodu += s.substring(0, 1).toUpperCase();
         }
         return this.isimKodu;// TODO burayi unutmayin
     }
@@ -91,7 +91,7 @@ public class Calisan {
         } else {
             return "İnsan Kaynakları Departmanı";
         }
-       // TODO burayi unutmayin
+       /// TODO burayi unutmayin
 
     }
 
