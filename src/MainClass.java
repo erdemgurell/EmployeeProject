@@ -1,20 +1,17 @@
-import Modeller.Calisanlar.Calisan;
-import Veritabani.Calisanlar;
+import Modeller.Calisanlar.Employee;
+import Veritabani.Workers;
 import java.util.Scanner;
 
 public class MainClass {
 
     public static void main(String[] args) throws InterruptedException {
 
-        // TODO Bu class'da bir sey degistirmenize gerek yok
-        //      Buradaki kod uzunluğu gözünüzü korkutmasin cünkü %80 lik bir kısmı görsel olarak güzel dursun diye var
-
-        // 2 Scanner kullanildi cünkü String icin kullanılan bir scanner, baska bir tip icin kullanildiğinda hata verebiliyor.
+        // Two scanners were used because a scanner used for String can give an error when used for another type.
         Scanner input = new Scanner(System.in);
         Scanner stringInput = new Scanner(System.in);
 
 
-        // Basit bir program baslangici, İslem 4 seçilir ise, döngü duracak.
+        // A simple program start, if Process 4 is selected, the loop will stop.
         while (true) {
             System.out.println("---------------------------------------------");
             System.out.println("Şirket Paneline Hoşgeldiniz. Lütfen bir islem seciniz.");
@@ -26,57 +23,58 @@ public class MainClass {
             System.out.println("İşleminiz gerçekleştiriliyor lütfen bekleyiniz...");
             Thread.sleep(1500);
 
-            // Eğer seçim 1 yapilir ise calisan islemleri sekmesine gidilecek.
+            // If selection is 1, it will go to the employee operations tab.
             if (secim1 == 1) {
                 while (true) {
                     System.out.println("---------------------------------------------");
                     System.out.println("Calisan İslemleri Paneline Hosgeldiniz, Lütfen bir islem seciniz.");
                     System.out.println("1-Calisan Ekle\n2-Calisan Sil\n3-Zam Yap\n4-Onceki Menu\n");
                     System.out.print("İslem : ");
-                    int secim2 = input.nextInt();
+                    int choice = input.nextInt();
                     System.out.println("İşleminiz gerçekleştiriliyor lütfen bekleyiniz...\n");
                     Thread.sleep(1000);
 
-                    // Seçim 1 için bir calisan eklenecek, sizden constructorın parametresi icin gerekli argümanlari isteyecek
-                    if (secim2 == 1) {
-                        // Argüman 1
+                    // A worker will be added for selection 1,
+                    // it will ask you for the arguments for the constructor's parameter
+                    if (choice == 1) {
+                        // Argument 1
                         System.out.print("Lutfen isim ve soyisim giriniz : ");
                         String calisanAdSoyad = stringInput.nextLine();
 
-                        // Argüman 2
+                        // Argument 2
                         System.out.print("Lütfen maas giriniz : ");
                         int calisanMaas = input.nextInt();
 
-                        // Argüman 3
+                        // Argument 3
                         System.out.print("Lütfen departman kodunu giriniz : ");
                         String calisanDepartmanKod = stringInput.nextLine();
 
-                        // calisanin constructoru ve argümanlar burada kullaniliyor.
-                        new Calisan(calisanAdSoyad, calisanMaas, calisanDepartmanKod);
+                        // The Constructor of the worker and the arguments are used here.
+                        new Employee(calisanAdSoyad, calisanMaas, calisanDepartmanKod);
                         System.out.println("Calisan basari ile eklendi. Onceki menüye aktariliyorsunuz...");
                         Thread.sleep(1000);
                         break;
-                    } else if (secim2 == 2) {
+                    } else if (choice == 2) {
 
-                        // Bir id verilecek ve id üzerinden gerekli işlemler yapiacak, buradaki işlem
-                        // bir calisani silmek için
+                        // An ID will be given and necessary operations will be done on the ID,
+                        // this operation here is to delete an employee.
                         System.out.print("Lütfen silmek istediğiniz çalışanın ID sini giriniz : ");
                         String calisanId = stringInput.nextLine();
-                        Calisanlar.deleteACalisanWithId(calisanId);
+                        Workers.deleteWorkerWithId(calisanId);
                         System.out.println(calisanId + " Başarı ile silindi. Onceki Menuye aktariliyorsunuz....");
                         Thread.sleep(1000);
                         break;
-                    } else if (secim2 == 3) {
+                    } else if (choice == 3) {
 
-                        // Bir id verilecek ve id üzerinden gerekli işlemler yapiacak, buradaki işlem
-                        // bir calisana zam yapmak için
+                        // An ID will be given and necessary operations will be performed on the ID,
+                        // this operation here is to give a raise to an employee.
                         System.out.print("Lütfen zam yapmak istediğiniz çalışanın ID sini giriniz : ");
                         String calisanId = stringInput.nextLine();
-                        Calisan.zamYap(calisanId);
+                        Employee.zamYap(calisanId);
                         System.out.println("Islem basari ile gerçekleşti, Onceki menuye aktariliyorsunuz");
                         Thread.sleep(1000);
                         break;
-                    } else if (secim2 == 4) {
+                    } else if (choice == 4) {
                         System.out.println("İşleminiz gerçekleştiriliyor lütfen bekleyiniz...\n");
                         Thread.sleep(1000);
                         break;
@@ -85,7 +83,7 @@ public class MainClass {
                     }
                 }
 
-                // Eğer secim 2 yapilir ise Calisanlar listelenecek
+                // If selection 2 is made, employees will be listed
             } else if (secim1 == 2) {
                 System.out.print("Tüm calisanlar listeleniyor...");
                 Thread.sleep(1000);
@@ -95,11 +93,11 @@ public class MainClass {
                 }
                 System.out.println(' ');
                 System.out.println("---------------------------------------------");
-                Calisanlar.printCalisanlar();
+                Workers.printWorkers();
                 System.out.println("---------------------------------------------");
 
-                // Secim 3 yapilir ise bir departman kodu istenecek ve o departmanda calisan tüm kisiler konsola
-                // print edilecek.
+                // If selection 3 is made, a department code will be requested and
+                // all people working in that department will be printed to the console.
             } else if (secim1 == 3) {
                 System.out.print("Lütfen departman kodunu giriniz : ");
                 String departmanKodu = stringInput.nextLine();
@@ -111,7 +109,7 @@ public class MainClass {
                 }
                 System.out.println(' ');
                 System.out.println("---------------------------------------------");
-                Calisanlar.printDepartmandakiCalisanlar(departmanKodu);
+                Workers.printEmployeesInDepartment(departmanKodu);
                 System.out.println("---------------------------------------------");
             } else {
                 System.out.print("Başarıyla çıkış yaptınız, iyi günler dileriz.");
